@@ -46,6 +46,7 @@ group :test, :development do
   gem "pry-doc"
   gem "pry-debugger"
   gem "launchy"
+  gem "letter_opener"
 end
 
 group :test do
