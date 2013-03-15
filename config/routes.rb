@@ -1,6 +1,8 @@
 Ticketee::Application.routes.draw do
   devise_for :users
 
+  get "/admin/users/index"
+
   root :to => "projects#index"
 
   resources :projects do
