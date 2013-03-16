@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe ProjectsController do
   let!(:user) { Factory(:confirmed_user) }
-  let(:project) { mock_model(Project, :id => 1) }
+  let(:project) { Factory(:project) }
+  message = "The project you were looking for could not be found."
 
   context "standard users" do
     before do
@@ -25,9 +26,16 @@ describe ProjectsController do
   end
 
   it "displays an error for a missing project" do
+    sign_in(:user, user)
     get :show, :id => "not-here"
     response.should redirect_to(projects_path)
-    message = "The project you were looking for could not be found."
+    flash[:alert].should == message
+  end
+
+  it "cannot access the show action without permission" do
+    sign_in(:user, user)
+    get :show, :id => project.id
+    response.should redirect_to(projects_path)
     flash[:alert].should == message
   end
 end
