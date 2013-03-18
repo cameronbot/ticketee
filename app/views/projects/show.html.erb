@@ -10,7 +10,9 @@
 <% end %>
 </ul>
 
-<p><%= link_to "New Ticket", new_project_ticket_path(@project) %></p>
+<% authorized?("create tickets", @project) do %>
+  <p><%= link_to "New Ticket", new_project_ticket_path(@project) %></p>
+<% end %>
 
 <% admins_only do %>
   <p><%= link_to "Edit Project", edit_project_path(@project) %><br/>
