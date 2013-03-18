@@ -32,6 +32,12 @@ describe TicketsController do
       flash[:alert].should have_content message
     end
 
+    def cannot_delete_tickets!
+      response.should redirect_to project
+      message = "You cannot delete tickets on this project"
+      flash[:alert].should have_content message
+    end
+
     it "cannot begin to create a ticket" do
       get :new, :project_id => project.id
       cannot_create_tickets!
@@ -50,6 +56,11 @@ describe TicketsController do
     it "cannot update a ticket without permission" do
       put :update, { :project_id => project.id, :id => ticket.id, :ticket => {} }
       cannot_update_tickets!
+    end
+
+    it "cannot delete a ticket without permission" do
+      delete :destroy, { :project_id => project.id, :id => ticket.id }
+      cannot_delete_tickets!
     end
   end
 end
