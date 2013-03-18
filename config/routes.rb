@@ -1,6 +1,6 @@
 Ticketee::Application.routes.draw do
-  devise_for :users
-
+  devise_for :users, :controllers => { :registrations => "registrations" }
+  get "/awaiting_confirmation", :to => "users#confirmation", :as => "confirm_user"
   get "/admin/users/index"
 
   root :to => "projects#index"
