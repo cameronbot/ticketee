@@ -48,6 +48,7 @@ group :test, :development do
   gem "pry-debugger"
   gem "launchy"
   gem "letter_opener"
+  gem "simplecov", :require => false
 end
 
 group :test do
