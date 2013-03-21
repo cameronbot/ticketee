@@ -24,6 +24,7 @@ end
 gem 'jquery-rails'
 gem 'devise', '2.1.0.rc'
 gem 'cancan'
+gem 'paperclip', '2.7.0'
 
 
 # To use ActiveModel has_secure_password
