@@ -2,18 +2,20 @@
   <h2><%= @ticket.title %></h2>
   <span id="author">Created by <%= @ticket.user.email %></span>
   <%= simple_format(@ticket.description) %>
-  <% if @ticket.asset.exists? %>
-    <h3>Attachment</h3>
-    <div class="asset">
-      <p>
-        <%= link_to File.basename(@ticket.asset.path), @ticket.asset.url %>
-      </p>
-      <p>
-        <small>
-          <%= number_to_human_size(@ticket.asset.size) %>
-          (<%= @ticket.asset.content_type %>)
-        </small>
-      </p>
+  <% if @ticket.assets.exists? %>
+    <h3>Attachments</h3>
+    <div class="assets">
+      <% @ticket.assets.each do |a| %>
+        <p>
+          <%= link_to File.basename(a.asset_file_name), a.asset.url %>
+        </p>
+        <p>
+          <small>
+            <%= number_to_human_size(a.asset.size) %>
+            (<%= a.asset.content_type %>)
+          </small>
+        </p>
+      <% end %>
     </div>
   <% end %>
   <p>
