@@ -12,7 +12,7 @@ admin_user.confirm!
 Project.create(:name => "Ticketee Beta")
 
 State.create([
-  { name: "New", background: "#85ff00", color: "white" },
+  { name: "New", background: "#85ff00", color: "white", default: true },
   { name: "Open", background: "#00cffd", color: "white" },
   { name: "Closed", background: "#000", color: "white" }
-])
+], :without_protection => true)
