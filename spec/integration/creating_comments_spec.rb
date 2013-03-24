@@ -57,6 +57,6 @@ feature "Creating comments" do
     click_link ticket.title
     find_element = lambda { find("#comment_state_id") }
     message = "Expected not to see #comment_state_id but did."
-    find_element.should raise_error(Capybara::ElementNotFound, message)
+    find_element.should raise_error(Capybara::ElementNotFound)
   end
 end
